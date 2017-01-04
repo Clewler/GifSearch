@@ -3,9 +3,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>PhpFiddle Initial Code</title>
+<title>GifSearch</title>
 
-<script type="text/javascript" src="/js/jquery/1.7.2/jquery.min.js"></script>
 
 	
 
