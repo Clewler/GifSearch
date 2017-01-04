@@ -29,7 +29,7 @@ if(isset($_GET['query']))
 		{
 			$fp = fopen('data.txt','w+');
 			fclose($fp);
-		}
+		}//Tworzenie pliku bazy
 
 	
 if(isset($_GET['query']))
