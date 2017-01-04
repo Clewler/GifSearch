@@ -30,11 +30,7 @@ if(isset($_GET['query']))
 			$fp = fopen('data.txt','w+');
 			fclose($fp);
 		}
-	/*$file = file_get_contents( 'data.txt' );
-	$dopisz = 'Jakis tam tekst';
-	file_put_contents( 'data.txt', $dopisz . $file );
-	file_put_contents( 'data.txt', $dopisz . $file );
-	print_r($file);*/
+
 	
 if(isset($_GET['query']))
 {	
@@ -59,7 +55,7 @@ if(!empty($b['data']) && $b['meta']['status']==200)
 			$temp.=','.$b['data'][$it]['id'].',0';
 		}
 	$it++;
-	}while(!empty($b['data'][$it]));
+	}while(!empty($b['data'][$it])); //dodawanie do pliku nie istniejacych rekordow
 	
 	if(!empty($temp))
 	{	
@@ -89,7 +85,7 @@ if(!empty($b['data']) && $b['meta']['status']==200)
 			}
 			header("Location: http://niemam.000webhostapp.com/?query=".urlencode($_GET['query']));
 			file_put_contents('data.txt',implode(',',$data));
-		}
+		}// ocenianie dodatnie, ujemne, oraz zabezpieczenie przed proba zepsucia
 		echo '<img src="'.$b['data'][$i]['images']['original']['url'].'"/><br/>';
 		echo '<button type="submit"  name="'.$b['data'][$i]['id'].'" value="'.$b['data'][$i]['id'].',-1"">Lubie to!</button>';
 		echo $data[array_search($b['data'][$i]['id'],$data)+1];
@@ -97,17 +93,17 @@ if(!empty($b['data']) && $b['meta']['status']==200)
 		echo '<br/><br/><br/><br/><br/><br/>';
 		$i++;
 
-	}while(!empty($b['data'][$i]));
+	}while(!empty($b['data'][$i]));//Wyswietlanie
 
 }
 else if($b['meta']['status']==403)
 {
 	echo '<p>Blad polaczenia z baza danych, sprobuj ponownie pozniej</p>';
-}
+}// Komunikat bledu polaczenia z baza danych
 else
 {
 	echo '<p>Nie mznaleziono podanej frazy</p>';
-}
+}//Komunikat o braku gifow z podanym wyrazeniem
 }
 	
 ?>
